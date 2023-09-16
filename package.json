@@ -1,0 +1,14 @@
+{
+  "name": "contact_lists",
+  "version": "1.0.0",
+  "description": "Contact List WebApp with Functionalities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "adarshrajpathak",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
