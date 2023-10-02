@@ -1,0 +1,85 @@
+<!-- template for the contact list -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/res/user-plus-solid.svg">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+        display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- header section of the contact_list -->
+    <header>
+        <h1>Contact-List WebApp</h1>
+    </header>
+    
+    <!-- main section of the contact_list -->
+    <main class="container container-main">
+        <div class="row container container-input col-7">
+            <button id="addButton" class="add-button"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M13 8c0-2.21-1.79-4-4-4S5 5.79 5 8s1.79 4 4 4 4-1.79 4-4zm2 2v2h3v3h2v-3h3v-2h-3V7h-2v3h-3zM1 18v2h16v-2c0-2.66-5.33-4-8-4s-8 1.34-8 4z"></path></svg>Add Contact</button></section>
+
+            <form id="contact-form" class="form-contact mx-auto hidden" action="/create-contact" method="post">
+                <input type="text" class="input-box" placeholder="URL of Image" value=""  name="imgURL">
+                <input type="text" class="input-box" placeholder="Complete Name" required value="" name="fullName">
+                <input type="number" class="input-box" placeholder="Mob. No." inputmode="numeric" required value="" name="phoneNo">
+                <button type="submit" class="plus-button"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg></button>
+            </form>
+
+            <input class="row input-box col-5 mx-auto" type="text" id="search-box" placeholder="Search Contact">
+        </div>
+
+        <div class="row container-div col-6 m-auto" >
+            <ul type="none">
+                <% for(let i of contact_list){ %>
+                    <li>
+                        <div class="profile-container">
+                            <div class="profile-image">
+                                <!-- for anonymous image -->
+                                <!-- <img alt="dp" <% if(i.imgURL!=""){ %>
+                                                    src=<%= i.imgURL %>  
+                                                <%}else{%>
+                                                    src="foo"
+                                                <% } %> onerror="this.src='../res/placeholder_user.png';"> -->
+                                <img alt="dp" src="<%= i.imgURL %>">
+                            </div>  
+                            <div class="profile-details">
+                                <span class="fullName">
+                                    <%= i.fullName %>
+                                </span>
+                                <br>
+                                <span class="phoneNo">
+                                    <%= i.phoneNo %>
+                                </span>
+                            </div>
+                            <div class="trash-image">
+                                <a href="/delete-contact/<%= i._id %>">
+                                <!-- <a href="/delete-contact/?phoneNo=<%= i.phoneNo %>&name=<%= i.fullName %>"> -->
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="#f52f2f" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"></path></svg></a>
+                            </div>
+                        </div>
+                    </li>   
+                <% } %>
+            </ul>
+        </div>
+    </main>
+
+    <!-- footer section of the contact_list -->
+    <footer>
+        <span>Made by <%= author %></span>
+        <span>©<%= year %></span>
+        <span>All rights reserved</span>
+        <!-- date of publishing -->
+        <span id="version">v<%= major %>.<%= minor %>.<%= patch %></span>
+    </footer>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/script.js"></script>
+</body>
+</html>
